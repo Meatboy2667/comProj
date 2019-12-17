@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="reply2">
+	<insert id="insertReply">
+		insert into boardReply2 (rno,bno,replytext,replyer) values
+		( reply2_seq.nextval, #{bno}, #{replytext}, #{replyer} )
+	</insert>
+
+	<select id="listReply"
+		resultType="com.example.car.model.board2.dto.Reply2DTO">
+		select rno,bno,replyer,regdate,updatedate,name,replytext
+		from boardReply2 r, member m
+		where r.replyer=m.userid and bno=#{bno}
+		order by rno
+	</select>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

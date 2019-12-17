@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="member2">
+  <select id="memberList" 
+  resultType="com.example.car.model.member2.dto.Member2DTO">
+    select * from member
+    order by name
+  </select>
+  
+  <insert id="insertMember">
+		insert into member (userid,passwd,name,email,addr1,addr2,addr3)
+    values
+		(#{userid}, #{passwd}, #{name}, #{email}, #{addr1}, #{addr2},
+     #{addr3})
+
+  </insert>
+  
+  <select id="viewMember" resultType="com.example.car.model.member2.dto.Member2DTO">
+    select * from member
+    where userid=#{userid}
+  </select>
+  
+  <update id="updateMember">
+		update member 
+		set passwd=#{passwd}, name=#{name}, email=#{email}, 
+		addr1=#{addr1}, addr2=#{addr2}, addr3=#{addr3} 
+		 where userid=#{userid}        
+
+  </update>
+  
+  <select id="checkPw" resultType="int">
+    select count(*) from member
+    where userid=#{userid} and passwd=#{passwd}
+  </select>  
+
+  <delete id="deleteMember">
+    delete from member
+    where userid=#{userid}
+  </delete>	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="board">
+	<select id="listAll"
+		resultType="com.example.spring02.model.board.dto.BoardDTO">
+		select bno,title,writer,name,regdate,viewcnt
+		from board b, member m
+		where b.writer=m.userid
+		order by bno desc
+	</select>
+	
+	<insert id="insert">
+		insert into board (bno,title,content,writer) values
+		(seq_board.nextval, #{title}, #{content}, #{writer} )
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
